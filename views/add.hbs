@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add product</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        span {
+            font-size: 40px;
+            font-weight: 700;
+            color: white;
+            font-family: 'STIX Two Text', serif;
+        }
+        
+        header {
+            background-color: rgb(102 102 102);
+        }
+        
+        .display {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .menu {
+            background: rgb(10 170 216);
+        }
+        
+        a {
+            color: white;
+        }
+      
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container display">
+            <div class="title">
+                <span>ATN Company</span>
+            </div>
+        </div>
+    </header>
+    <div class="menu">
+        <div class="container">
+            <a href="http://localhost:5000" class="mr-5">Home</a>
+            <a href="http://localhost:5000/add" class="mr-5">Add New Product</a>
+            <a href="" class="mr-5">Update Product</a>
+        </div>
+    </div>
+    <h2>ADD PRODUCT</h2>
+    <div style="width: 400px; margin:0 auto;">
+        <form action="/add" method="POST">
+            <p>NAME</p>
+            <input type="text" style="width: 300px;" name="txtName">
+            <p>PRICE</p>
+            <input type="text" style="width: 300px;" name="txtPrice">
+            <p>IMAGE</p>
+            <input type="text" style="width: 300px;" name="txtImg">
+            <p></p>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+
+</html>

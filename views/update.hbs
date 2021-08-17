@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        span {
+            font-size: 40px;
+            font-weight: 700;
+            color: white;
+            font-family: 'STIX Two Text', serif;
+        }
+        
+        header {
+            background-color: rgb(102 102 102);
+        }
+        
+        .display {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .menu {
+            background: rgb(10 170 216);
+        }
+        
+        a {
+            color: white;
+        }
+        table {
+            border: 1px solid black;
+            box-shadow: 5px 3px 8px rgba(0, 0, 0, .5);
+        }
+        td{
+            border: 1px solid black;
+        }
+        .font{
+            color: black;
+            text-decoration: none;
+            transition: 1s;
+        }
+        .product-img{
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            margin: auto;
+        }
+        .img{
+            display: flex;
+            justify-content: center;
+            margin: auto;
+        }
+        .input-search{
+            border-radius: 10px;
+            border: none;
+            box-shadow: 5px 3px 8px rgba(0, 0, 0, .5);
+        }
+        .input-search:focus{
+            outline: none;
+        }
+        .btn-search{
+            border: none;
+            border-radius: 10px;
+            box-shadow: 5px 3px 8px rgba(0, 0, 0, .5);
+            background-color: greenyellow;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container display">
+            <div class="title">
+                <span>ATN Company</span>
+            </div>
+        </div>
+    </header>
+    <div class="menu">
+        <div class="container">
+            <a href="http://localhost:5000" class="mr-5">Home</a>
+            <a href="http://localhost:5000/add" class="mr-5">Add New Product</a>
+            <a href="http://localhost:5000/update" class="mr-5">Update Product</a>
+        </div>
+    </div>
+    <div class="container mt-4">
+         <form action="" class="form-search">
+        <input class="input-search" type="text" name="" placeholder="Search">
+        <input type="submit" value="Search" class="btn-search">
+    </form>
+    </div>
+
+    <div class="display mt-5">
+        <table>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td class="img">Image</td>
+        </tr>
+        {{# each data}}
+        <tr>
+            <td>{{_id}}</td>
+            <td>{{Name}}</td>
+            <td>{{Price}}</td>
+            <td><img class="product-img" src="{{Image}}"></td>
+            <td><a class="font" href="/edit?id={{_id}}">Update</a></td>
+            <td><a class="font" href="/delete?id={{_id}}">Delete</a></td>
+        </tr>  
+        {{/each}}
+    </table>
+    </div>
+    
+</body>
+
+</html>
