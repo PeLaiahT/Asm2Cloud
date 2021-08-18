@@ -1,7 +1,7 @@
 const EXPRESS = require('express');
-const { Double, ObjectId } = require('mongodb');
-const APP = EXPRESS();
+const { Int32, ObjectId } = require('mongodb');
 const {getAllProduct,addProduct,deleteProduct,updateProduct,getProductByID} = require('./databaseHandler')
+const APP = EXPRESS();
 APP.set("view engine","hbs")
 APP.set("views","./views");
 APP.use(EXPRESS.urlencoded({extended:true}))
@@ -13,7 +13,7 @@ APP.post("/add", async(req,res)=>{
     const nameInput = req.body.txtName;
     const priceInput = req.body.txtPrice;
     const imgInput = req.body.txtImg
-    const newProduct = {Name:nameInput,Price:priceInput,Image:imgInput};
+    const newProduct = {Name:nameInput,Price:Int32(priceInput)+" $",Image:imgInput};
     await addProduct(newProduct);
     res.redirect('/');
 })
