@@ -63,7 +63,14 @@
             <p>IMAGE</p>
             <input type="text" style="width: 300px;" name="txtImg">
             <p></p>
+            {{#if error}} 
+                <div class="alert alert-danger">
+                    {{error}}
+                </div>
+            {{/if}}
+            <p></p>
             <input type="submit" value="Submit">
+            
         </form>
     </div>
 </body>

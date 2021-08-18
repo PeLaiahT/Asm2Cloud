@@ -1,21 +1,39 @@
 const EXPRESS = require('express');
-const { Int32, ObjectId } = require('mongodb');
+const { Int32,} = require('mongodb');
 const {getAllProduct,addProduct,deleteProduct,updateProduct,getProductByID} = require('./databaseHandler')
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const flash = require('express-flash');
 const APP = EXPRESS();
+APP.use(cookieParser());
+APP.use(session({ secret: '124447yd@@$%%#', cookie: { maxAge: 60000 },saveUninitialized:false,resave:false}))
+APP.use(flash());
 APP.set("view engine","hbs")
 APP.set("views","./views");
 APP.use(EXPRESS.urlencoded({extended:true}))
 
 APP.get("/add", (req,res)=>{
-    res.render("add");
+    const error = req.flash('error');
+    res.render("add",{error});
 })
 APP.post("/add", async(req,res)=>{
     const nameInput = req.body.txtName;
     const priceInput = req.body.txtPrice;
-    const imgInput = req.body.txtImg
-    const newProduct = {Name:nameInput,Price:Int32(priceInput)+" $",Image:imgInput};
-    await addProduct(newProduct);
-    res.redirect('/');
+    const imgInput = req.body.txtImg;
+    let error = ''
+    if(!nameInput){
+        error = 'Please input Name'
+    }else if(nameInput.length < 3){
+        error = 'Name required more than 3 characters'
+    }
+    if (error){
+        req.flash('error', error)
+        res.redirect("/add")
+    }else{
+        const newProduct = {Name:nameInput,Price:Int32(priceInput)+" $",Image:imgInput};
+        await addProduct(newProduct);
+        res.redirect('/');
+    }
 })
 APP.get("/update", async(req,res)=>{
     const allProducts = await getAllProduct();
